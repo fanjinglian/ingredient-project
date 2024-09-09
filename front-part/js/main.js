@@ -33,7 +33,7 @@ function capturePhoto() {
     photo.src = canvas.toDataURL('image/jpeg');
     photo.style.display = 'block';
     
-    // 这里可以添加OCR逻辑来提取文本
+    // 里可以添加OCR逻辑来提取文本
     // 暂时用模拟数据
    
 }
@@ -55,7 +55,7 @@ async function analyzeIngredients() {
         const result = await response.json();
         analysisResult.textContent = result.analysis;
     } catch (error) {
-        console.error('分析过程出错:', error);
+        console.error('分析过程错:', error);
         analysisResult.textContent = '分析失败，请稍后再试。';
     }
 }
@@ -83,5 +83,37 @@ async function processImage(imageData) {
 
 // 事件监听
 startCamera();
-captureButton.addEventListener('click', capturePhoto);
+captureButton.addEventListener('click', async () => {
+    canvas.width = camera.videoWidth;
+    canvas.height = camera.videoHeight;
+    canvas.getContext('2d').drawImage(camera, 0, 0);
+    
+    const imageDataUrl = canvas.toDataURL('image/jpeg');
+    photo.src = imageDataUrl;
+    photo.style.display = 'block'; // 确保照片可见
+
+    // 发送图片数据到后端进行分析
+    try {
+        const response = await fetch('/analyze_image', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ image: imageDataUrl }),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        
+        // 显示分析结果
+        analysisResult.innerHTML = `<p>${result.ingredients}</p>`;
+        analysisResult.style.display = 'block'; // 确保结果可见
+    } catch (error) {
+        console.error('Error:', error);
+        analysisResult.innerHTML = '<p>分析失败，请重试。</p>';
+    }
+});
+
+// 事件监听
 analyzeButton.addEventListener('click', analyzeIngredients);
