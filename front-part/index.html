@@ -15,20 +15,22 @@
             <section id="input-section">
                 <h2>输入配料表</h2>
                 <textarea id="ingredients" rows="5" placeholder="请输入食品配料表..."></textarea>
-                <button id="analyze">分析配料</button>
+                <button id="analyze">确定</button>
             </section>
+        </div>
+        <div class="photo-result-container">
             <section id="photo-section">
                 <h2>拍照获取配料表</h2>
                 <video id="camera" autoplay playsinline></video>
                 <button id="capture">拍照</button>
                 <canvas id="canvas" style="display:none;"></canvas>
-                <img id="photo" alt="拍摄的照片" style="display:none;">
+            </section>
+            <section id="result-section">
+                <h2>配料表信息</h2>
+                <div id="analysis-result"></div>
+                <img id="photo" alt="拍摄的照片">
             </section>
         </div>
-        <section id="result-section">
-            <h2>分析结果</h2>
-            <div id="analysis-result"></div>
-        </section>
     </main>
     <footer>
         <p>&copy; 2024 食品配料表分析工具</p>

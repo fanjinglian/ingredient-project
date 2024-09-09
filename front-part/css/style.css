@@ -27,3 +27,23 @@ button {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+.photo-result-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* 在两个部分之间添加间距 */
+}
+
+#photo-section, #result-section {
+    flex: 1; /* 使两个部分平均分配可用空间 */
+}
+
+#camera, #photo {
+    max-width: 100%;
+    height: auto;
+}
+
+#analysis-result {
+    margin-top: 10px;
+}

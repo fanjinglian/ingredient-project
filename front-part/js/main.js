@@ -35,7 +35,7 @@ function capturePhoto() {
     
     // 这里可以添加OCR逻辑来提取文本
     // 暂时用模拟数据
-    ingredients.value = "模拟的配料表数据：水，糖，食用香料...";
+   
 }
 
 // 分析配料
