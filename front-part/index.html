@@ -3,19 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的前端项目</title>
+    <title>食品配料表分析</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <h1>欢迎来到我的网站</h1>
+        <h1>食品配料表分析工具</h1>
     </header>
     <main>
-        <p>这是一个简单的前端项目。</p>
-        <button id="clickMe">点击我</button>
+        <div class="input-row">
+            <section id="input-section">
+                <h2>输入配料表</h2>
+                <textarea id="ingredients" rows="5" placeholder="请输入食品配料表..."></textarea>
+                <button id="analyze">分析配料</button>
+            </section>
+            <section id="photo-section">
+                <h2>拍照获取配料表</h2>
+                <video id="camera" autoplay playsinline></video>
+                <button id="capture">拍照</button>
+                <canvas id="canvas" style="display:none;"></canvas>
+                <img id="photo" alt="拍摄的照片" style="display:none;">
+            </section>
+        </div>
+        <section id="result-section">
+            <h2>分析结果</h2>
+            <div id="analysis-result"></div>
+        </section>
     </main>
     <footer>
-        <p>&copy; 2024 我的前端项目</p>
+        <p>&copy; 2024 食品配料表分析工具</p>
     </footer>
     <script src="js/main.js"></script>
 </body>
